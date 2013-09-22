@@ -1,0 +1,11 @@
+{
+  "method": "recognize",
+  "params": [
+    "ja",
+    {
+      "audio": "xxxxxxxx",
+      "audioType": "audio/x-wav",
+      "voiceType": "*"
+    }
+  ]
+}

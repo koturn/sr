@@ -1,0 +1,13 @@
+*.exe
+*.exp
+*.lib
+*.o
+*.obj
+*.out
+*.stackdump
+*.sh
+*.txt
+*.wav
+*~
+tags
+src/cygwin.mk
