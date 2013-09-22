@@ -339,9 +339,11 @@ static std::string jsonToResult(const std::string &ret_json)
 
   // JSON全体のオブジェクトを取得
   picojson::object &pico_obj = pico_value.get<picojson::object>();
+  /**
   if (pico_obj["error"].get<std::string>() != "null") {
     throw "Failed speach recognition";
   }
+  **/
   // キー: resultに対応するサブのJSONを取得
   std::string result = pico_obj["result"].get<std::string>();
   return result;
