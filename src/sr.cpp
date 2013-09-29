@@ -338,8 +338,8 @@ static std::string jsonToResult(const std::string &ret_json)
   picojson::parse(pico_value, ret_json_cstr, ret_json_cstr + strlen(ret_json_cstr), &err);
 
   // JSON全体のオブジェクトを取得
-  picojson::object &pico_obj = pico_value.get<picojson::object>();
   /**
+  picojson::object &pico_obj = pico_value.get<picojson::object>();
   if (pico_obj["error"].get<std::string>() != "null") {
     throw "Failed speach recognition";
   }
