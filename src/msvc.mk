@@ -1,9 +1,9 @@
 ### This Makefile was written for nmake. ###
-CC         = cl
 CPP        = cl
+CAT        = type
 INCS       = /Ilibrary /Ilibrary\getopt
-CFLAGS     = /O2 /Wall $(INCS)
-CPPFLAGS   = /O2 /Wall $(INCS)
+CFLAGS     = /O2 /W4 $(INCS)
+CPPFLAGS   = /O2 /W4 $(INCS)
 LDLIBS     = shlwapi.lib
 LDFLAGS    = /O2
 RM         = del /F
@@ -18,25 +18,30 @@ SRC1       = $(OBJ1:.obj=.cpp)
 SRC2       = $(OBJ2:.obj=.cpp)
 
 
-all : $(TARGET)
+all: $(TARGET)
 
-$(TARGET) : $(OBJ1) $(OBJ2) $(OBJ3) $(OBJ4)
+$(TARGET): $(OBJ1) $(OBJ2) $(OBJ3) $(OBJ4)
 	$(CPP) $(LDLIBS) $(LDFLAGS) $**
 
-$(OBJ1) : $(SRC1)
+$(OBJ1): $(SRC1)
 
-$(OBJ2) : $(SRC2)
+$(OBJ2): $(SRC2)
 
-$(OBJ3) $(OBJ4) :
+$(OBJ3) $(OBJ4):
 	cd $(GETOPT_DIR)  &&  $(MAKE) /f msvc.mk  &&  cd ..\..
 
 
-allclean :
+test:
+	$(TARGET) sample\out.wav
+	$(CAT) sample\out.wav.txt
+
+
+allclean:
 	$(RM) $(TARGET) $(OBJ1) $(OBJ2) *.stackdump *~
 	cd $(GETOPT_DIR)  &&  $(MAKE) /f msvc.mk $@  &&  cd ..\..
-clean :
+clean:
 	$(RM) $(TARGET) $(OBJ1) $(OBJ2) $(TARGET:.exe=.exp) $(TARGET:.exe=.lib)
 	cd $(GETOPT_DIR)  &&  $(MAKE) /f msvc.mk $@  &&  cd ..\..
-objclean :
+cleanobj:
 	$(RM) $(OBJ1) $(OBJ2)
 	cd $(GETOPT_DIR)  &&  $(MAKE) /f msvc.mk $@  &&  cd ..\..
